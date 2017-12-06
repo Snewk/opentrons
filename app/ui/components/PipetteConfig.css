@@ -30,9 +30,11 @@
     'img info';
 }
 
-.inactive,
+.inactive {
+  opacity: 0.2;
+}
+
 .disabled {
-  opacity: 0.3;
   pointer-events: none;
 }
 

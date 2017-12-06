@@ -1,3 +1,5 @@
+@value red from './App.global.css';
+
 .info {
   margin-top: 1rem;
   font-size: 0.75rem;
@@ -28,17 +30,19 @@
 }
 
 .warning {
-  position: absolute;
+  /*position: absolute;
   top: 100%;
-  visibility: hidden;
+  visibility: hidden;*/
+  color: red;
   padding: 0.5rem 1rem;
-  font-size: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
   text-transform: capitalize;
 }
 
-.info:hover .warning {
+/*.info:hover .warning {
   visibility: visible;
-}
+}*/
 
 .btn_probe[disabled] {
   pointer-events: none;
@@ -51,6 +55,8 @@
 
 .message {
   margin-bottom: 1rem;
+  font-size: 1rem;
+  color: red;
 }
 
 .submessage {

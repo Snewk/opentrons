@@ -29,6 +29,7 @@ TipProbe.propTypes = {
       PROBED
     ])
   }).isRequired,
+  isCurrent: PropTypes.bool.isRequired,
   onPrepareClick: PropTypes.func.isRequired,
   onProbeTipClick: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired
@@ -38,15 +39,15 @@ export default function TipProbe (props) {
   const {instrument: {calibration}} = props
   let onCancelClick
 
-  if (calibration === READY_TO_PROBE || calibration === PROBED) {
+  if (calibration === PROBED) {
     onCancelClick = props.onCancelClick
   }
 
   return (
     <InfoBox onCancelClick={onCancelClick} className={styles.info}>
       <TipProbeMessage {...props} />
-      <TipProbeButtonOrSpinner {...props} />
       <TipProbeWarning {...props} />
+      <TipProbeButtonOrSpinner {...props} />
     </InfoBox>
   )
 }
@@ -62,7 +63,7 @@ function TipProbeMessage (props) {
         <Warning className={styles.alert} />
       )
       message = (
-        'For accuracy, you must define tip dimensions using the Tip Probe tool'
+        'For accuracy, robot must find the tip using the Tip Probe tool'
       )
     }
   } else if (calibration === READY_TO_PROBE) {
@@ -131,9 +132,9 @@ function TipProbeButtonOrSpinner (props) {
 }
 
 function TipProbeWarning (props) {
-  const {instrument: {calibration}} = props
+  const {isCurrent, instrument: {calibration}} = props
 
-  if (calibration === UNPROBED) {
+  if (isCurrent && calibration === UNPROBED) {
     return (
       <p className={styles.warning}>
         ATTENTION:  REMOVE ALL LABWARE AND TRASH BIN FROM DECK BEFORE STARTING TIP PROBE.
